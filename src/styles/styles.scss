@@ -6,10 +6,67 @@ $gold: #E8A87C;
 $pink: #C38D9E;
 $green: #41B3A3;
 
+$header-size-font: 2rem;
+$text-size-font: 1.3rem;
+
 body {
   background-color: white;
   font-family: 'Crimson Text', serif;
   color: $green;
+}
+
+.section {
+  margin: 3rem 0;
+  display: flex;
+  border: 1px solid white;
+  height: 40rem;
+  border-radius: .75rem;
+  box-shadow: 2px 2px grey;
+
+  .about {
+    padding: 1.25rem 5rem;
+    background-color: $red;
+    color: white;
+    border-radius: 10px;
+
+    &__header {
+      text-align: center;
+      margin: 0 auto;
+      border-right: .075rem solid white;
+      white-space: nowrap;
+      font-size: $header-size-font;
+      animation: typing 2s steps(40, end) 1s 1 normal both, blink-caret .75s step-end infinite;
+      overflow: hidden;
+      width: 13.14rem;
+    }
+
+    &__text {
+      margin-top: 1.25rem;
+      font-size: $text-size-font;
+      animation: slide-up 5s;
+      transition: cubic-bezier(.16,.53,.7,.12);
+    }
+
+    &__image {
+      width: 30%;
+      height: 20rem;
+    }
+
+    &__image-wrapper {
+      display: flex;
+      justify-content: space-around;
+
+      :first-child {
+        animation: slide-up 6s;
+        transition: cubic-bezier(.16,.53,.7,.12);
+      }
+
+      :last-child {
+        animation: slide-up 7s;
+        transition: cubic-bezier(.16,.53,.7,.12);
+      }
+    }
+  }
 }
 
 .nav {
@@ -27,12 +84,13 @@ body {
 
   &__nav-item {
     border: 0.5px solid $blue;
-    font-size: 2rem;
+    font-size: $header-size-font;
     font-weight: 300;
     padding: 0.25rem 1rem;
     box-shadow: 1px 1px $blue;
     width: 33%;
     text-align: center;
+    border-radius: .75rem;
 
     &:hover {
       background-color: $blue;
@@ -90,6 +148,34 @@ body {
       justify-content: center;
     }
   }
+}
+
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 13.14rem }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: white; }
 }
 
 @keyframes rotate {
