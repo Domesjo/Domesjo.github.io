@@ -24,7 +24,7 @@ class Nav extends Component {
                 time = 2000;
                 break;
             default:
-                time = 2000;
+                time = 1750;
         }
         setTimeout(() => {
             this.setState({
@@ -78,8 +78,11 @@ class Nav extends Component {
                         xs={4}
                         onMouseLeave={ this.reset.bind(this) }
                     >
-                        <svg className={ svgClass } id="skills" xmlns="http://www.w3.org/2000/svg" width="32" height="30">
-                            <path d="M0 2v20h32V2H0zm30 18H2V4h28v16zm-9 4H11l-1 4-2 2h16l-2-2z"/></svg>
+                        {//<svg className={ svgClass } id="skills" xmlns="http://www.w3.org/2000/svg" width="32" height="30">
+                        }
+                        <svg id="skills" className={ svgClass } xmlns="http://www.w3.org/2000/svg" width="32" height="30">
+                            <path d="M0 2v20h32V2H0zm30 18H2V4h28v16zm-9 4H11l-1 4-2 2h16l-2-2z"/>
+                        </svg>
                         <span ref="skills" className={ this.getClass('skills') }>Skills</span>
                     </Col>
                     <Col
