@@ -1,8 +1,146 @@
+// 1 rem = 16px
+
+$red: #E27D60;
+$blue: #85DCBA;
+$gold: #E8A87C;
+$pink: #C38D9E;
+$green: #41B3A3;
+
 body {
   background-color: white;
+  font-family: 'Crimson Text', serif;
+  color: $green;
 }
 
 .nav {
-  display: flex;
-  justify-content: center;
+  display: block;
+  .nav__logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__navbar {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.25rem;
+  }
+
+  &__nav-item {
+    border: 0.5px solid $blue;
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 0.25rem 1rem;
+    box-shadow: 1px 1px $blue;
+    width: 33%;
+    text-align: center;
+
+    &:hover {
+      background-color: $blue;
+      transition-duration: 0.75s;
+      transition: cubic-bezier(.66,.71,.45,.22);
+      cursor: pointer;
+      color: #fff;
+      svg {
+        display: inline-flex;
+
+        &.hide {
+          display: none;
+        }
+
+        &#contact {
+          animation: 2s jump ease-out;
+        }
+
+        &#about {
+          transition: cubic-bezier(0,0,.59,.58);
+          animation: 4s 1 spin;
+
+          path {
+            stroke: orange;
+            stroke-dasharray: 50;
+            stroke-dashoffset: 300;
+            animation: 2s draw;
+          }
+        }
+      }
+
+      .nav-text {
+        display: none;
+        &--show {
+          animation: write-in 1s linear;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+
+    svg {
+      fill: white;
+      display: none;
+      margin: 0 .25rem;
+      align-self: center;
+      justify-content: center;
+    }
+  }
+}
+
+@keyframes jump {
+  0% {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-20%);
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes draw {
+    0% {
+      stroke: #fff;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+      stroke: orange;
+    }
+}
+
+@keyframes write-in {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  50% {
+    opacity: .5;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

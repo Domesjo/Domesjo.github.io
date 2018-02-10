@@ -12,7 +12,7 @@ class Portfolio extends Component {
             <Grid>
                 <Nav />
                 <Row>
-                    Under construction
+
                 </Row>
             </Grid>
         )
