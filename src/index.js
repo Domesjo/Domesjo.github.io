@@ -8,6 +8,7 @@ import Nav from './Nav'
 import About from './About';
 import Skills from './Skills';
 import Contact from './Contact';
+import Footer from "./Footer";
 
 class Portfolio extends Component {
     constructor() {
@@ -29,7 +30,9 @@ class Portfolio extends Component {
         const { active } = this.state;
         return(
             <Grid>
-                <Nav setActive={this.setActive} />
+                <Row>
+                    <Nav setActive={this.setActive} />
+                </Row>
                 <Row>
                     <Col xs={12} className="section">
                         <div className="section__topbar">
@@ -56,6 +59,7 @@ class Portfolio extends Component {
                         }
                     </Col>
                 </Row>
+                <Footer/>
             </Grid>
         );
     }
