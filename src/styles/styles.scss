@@ -1,5 +1,4 @@
 // 1 rem = 16px
-
 $red: #E27D60;
 $blue: #85DCBA;
 $gold: #E8A87C;
@@ -15,6 +14,30 @@ $screen-small: 772px;
 $screen-tiny: 480px;
 
 $header-width: 17.7rem;
+$header-skills-width: 22.5rem;
+
+@import "./animations.scss";
+
+@mixin writeOut($width, $name) {
+  text-align: left;
+  border-right: .775rem solid white;
+  animation: $name 2s steps(40, end) 1s 1 normal both, blink-caret .75s step-end infinite;
+  white-space: nowrap;
+  font-size: $header-size-font;
+  overflow: hidden;
+  width: $width;
+}
+
+@mixin section($color) {
+  padding: 1.25rem 5rem;
+  @media (max-width: $screen-tiny) {
+    padding: 1.25rem 2rem;
+  }
+  background-color: $color;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 body {
   background-color: white;
@@ -32,7 +55,7 @@ body {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: $terminal-grey;
-    height: 2rem;
+    min-height: 2rem;
     box-shadow: 0 1px 0.5px;
     text-align: center;
     line-height: 2rem;
@@ -56,24 +79,57 @@ body {
     }
   }
 
-  .about {
-    padding: 1.25rem 5rem;
-    @media (max-width: $screen-tiny) {
-      padding: 1.25rem 2rem;
+  .skills {
+    @include section($blue);
+
+    .hide {
+      opacity: 0;
+      @media (max-width: $screen-small) {
+        opacity: 1;
+        color: $gold;
+        font-weight: 400;
+      }
     }
-    background-color: $red;
-    color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+
+    &__text {
+      opacity: 1;
+      color: $gold;
+      font-weight: 400;
+    }
+    &__icon-col {
+      margin: 1.2rem 0;
+      display: inline-flex;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    &__icon {
+      font-size: 4rem;
+
+      &:hover {
+        transform: translateY(-20%);
+        animation: fly .5s linear;
+      }
+    }
 
     &__header {
-      text-align: left;
-      border-right: .775rem solid white;
-      white-space: nowrap;
-      font-size: $header-size-font;
-      animation: typing 2s steps(40, end) 1s 1 normal both, blink-caret .75s step-end infinite;
-      overflow: hidden;
-      width: $header-width;
+      @media (min-width: $screen-tiny) {
+        @include writeOut($header-skills-width, typing-wide);
+      }
+      @media (max-width: $screen-tiny) {
+        font-size: $header-size-font;
+        border-right: .775rem solid white;
+        animation: blink-caret .75s step-end infinite;
+      }
+    }
+  }
+
+  .about {
+    @include section($red);
+
+    &__header {
+      @include writeOut($header-width, typing);
     }
 
     &__text {
@@ -195,104 +251,5 @@ body {
         width: 200px;
       }
     }
-  }
-}
-
-
-@keyframes slide-up {
-  0% {
-    opacity: 0;
-    transform: translateY(10%);
-  }
-
-  50% {
-    opacity: 0;
-    transform: translateY(10%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: $header-width }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: white; }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate3d(0, 1, 0, 0);
-  }
-
-  100% {
-    transform: rotate3d(0, 1, 0, 360deg);
-  }
-}
-
-@keyframes jump {
-  0% {
-    display: flex;
-    transform: translateY(0);
-  }
-
-  25% {
-    transform: translateY(-20%);
-  }
-
-  50% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-40%);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(180deg);
-  }
-}
-
-@keyframes draw {
-    0% {
-      stroke: #fff;
-    }
-
-    100% {
-      stroke-dashoffset: 0;
-      stroke: orange;
-    }
-}
-
-@keyframes write-in {
-  0% {
-    opacity: 0;
-    display: none;
-  }
-
-  50% {
-    opacity: .5;
-    display: block;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
