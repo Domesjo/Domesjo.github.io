@@ -4,6 +4,7 @@ $blue: #85DCBA;
 $gold: #E8A87C;
 $pink: #C38D9E;
 $green: #41B3A3;
+$cyan: #9aedfe;
 
 $terminal-grey: #C5C8C6;
 
@@ -50,6 +51,7 @@ body {
   border: 1px solid white;
   height: 42rem;
   border-radius: .75rem;
+  width: 100%;
 
   &__topbar {
     border-top-right-radius: 10px;
@@ -78,6 +80,55 @@ body {
       }
     }
   }
+
+  .contact {
+    @include section($pink);
+
+    &__header {
+      @media (min-width: $screen-tiny) {
+        @include writeOut(26rem, typing-26);
+      }
+      @media (max-width: $screen-tiny) {
+        font-size: $header-size-font;
+        border-right: .775rem solid white;
+        animation: blink-caret .75s step-end infinite;
+      }
+    }
+
+    &__list {
+      margin-top: 1.25rem;
+      list-style: none;
+      padding: 0;
+      line-height: 2rem;
+
+      &__item {
+        display: flex;
+        vertical-align: top;
+        align-items: center;
+        margin: 1rem 0 0 0;
+        color: $cyan;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+          fill: $green;
+          margin-right: .5rem;
+        }
+
+        a {
+          margin-left: .5rem;
+          color: white;
+          text-decoration: none;
+          -webkit-appearance: inherit;
+          &:hover {
+            color: #005cbb;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
 
   .skills {
     @include section($blue);
