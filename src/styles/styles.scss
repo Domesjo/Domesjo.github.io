@@ -122,7 +122,9 @@ body {
         align-items: center;
         margin: 1rem 0 0 0;
         color: $cyan;
-        flex-direction: column;
+        @media (max-width: $screen-tiny ) {
+          flex-direction: column;
+        }
 
         svg {
           width: 2rem;
