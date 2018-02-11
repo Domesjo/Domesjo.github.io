@@ -36,6 +36,24 @@ body {
     box-shadow: 0 1px 0.5px;
     text-align: center;
     line-height: 2rem;
+
+    &__icon {
+      float: left;
+      margin: 6px;
+      border-radius: 1rem;
+      &:first-child {
+        background-color: #ff6e67;
+        fill: #ff6e67;
+      }
+      &:nth-child(2) {
+        background-color: #f4f99d;
+        fill: #f4f99d;
+      }
+      &:last-child {
+        background-color: #5af78e;
+        fill: #5af78e;
+      }
+    }
   }
 
   .about {
