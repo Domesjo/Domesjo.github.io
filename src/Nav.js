@@ -62,6 +62,7 @@ class Nav extends Component {
                 </Row>
                 <Row className="nav__navbar">
                     <Col
+                        onClick={() => { this.props.setActive('about') }}
                         onMouseEnter={this.fadeIn.bind(this, 'about')}
                         onMouseLeave={ this.reset.bind(this) }
                         className="nav__nav-item"
@@ -73,6 +74,7 @@ class Nav extends Component {
                         <span ref="about" className={this.getClass('about')}>About</span>
                     </Col>
                     <Col
+                        onClick={()=> {this.props.setActive('skills')}}
                         onMouseEnter={this.fadeIn.bind(this, 'skills')}
                         className="nav__nav-item"
                         xs={4}
@@ -84,6 +86,7 @@ class Nav extends Component {
                         <span ref="skills" className={ this.getClass('skills') }>Skills</span>
                     </Col>
                     <Col
+                        onClick={()=> { this.props.setActive('contact')} }
                         onMouseEnter={this.fadeIn.bind(this, 'contact')}
                         className="nav__nav-item"
                         xs={4}

@@ -8,13 +8,36 @@ import Nav from './Nav'
 import About from './About';
 
 class Portfolio extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            active: "about"
+        };
+        this.setActive = this.setActive.bind(this);
+    }
+
+    setActive(state) {
+        this.setState({
+            active: state
+        });
+    }
+
     render() {
+        const { active } = this.state;
         return(
             <Grid>
-                <Nav />
+                <Nav setActive={this.setActive} />
                 <Row>
                     <Col xs={12} className="section">
-                        <About />
+                        <div className="section__topbar">
+                            samdomesjö@sams-portfolio: {active}
+                        </div>
+                        { active === 'about' ?
+                            <About />
+                        :
+                            null
+                        }
                     </Col>
                 </Row>
             </Grid>

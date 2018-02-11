@@ -6,38 +6,56 @@ $gold: #E8A87C;
 $pink: #C38D9E;
 $green: #41B3A3;
 
+$terminal-grey: #C5C8C6;
+
 $header-size-font: 2rem;
 $text-size-font: 1.3rem;
 
+$screen-small: 772px;
+$screen-tiny: 480px;
+
+$header-width: 17.7rem;
+
 body {
   background-color: white;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Monaco', 'Crimson Text', serif;
   color: $green;
 }
 
 .section {
   margin: 3rem 0;
-  display: flex;
   border: 1px solid white;
-  height: 40rem;
+  height: 42rem;
   border-radius: .75rem;
-  box-shadow: 2px 2px grey;
+
+  &__topbar {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: $terminal-grey;
+    height: 2rem;
+    box-shadow: 0 1px 0.5px;
+    text-align: center;
+    line-height: 2rem;
+  }
 
   .about {
     padding: 1.25rem 5rem;
+    @media (max-width: $screen-tiny) {
+      padding: 1.25rem 2rem;
+    }
     background-color: $red;
     color: white;
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     &__header {
-      text-align: center;
-      margin: 0 auto;
-      border-right: .075rem solid white;
+      text-align: left;
+      border-right: .775rem solid white;
       white-space: nowrap;
       font-size: $header-size-font;
       animation: typing 2s steps(40, end) 1s 1 normal both, blink-caret .75s step-end infinite;
       overflow: hidden;
-      width: 13.14rem;
+      width: $header-width;
     }
 
     &__text {
@@ -53,17 +71,19 @@ body {
     }
 
     &__image-wrapper {
+      @media (max-width: $screen-small) {
+        display: none;
+      }
+
       display: flex;
       justify-content: space-around;
 
       :first-child {
-        animation: slide-up 6s;
-        transition: cubic-bezier(.16,.53,.7,.12);
+        animation: slide-up 7s;
       }
 
       :last-child {
-        animation: slide-up 7s;
-        transition: cubic-bezier(.16,.53,.7,.12);
+        animation: slide-up 8s;
       }
     }
   }
@@ -83,6 +103,10 @@ body {
   }
 
   &__nav-item {
+    @media (max-width: $screen-tiny) {
+      width: 100%;
+    }
+
     border: 0.5px solid $blue;
     font-size: $header-size-font;
     font-weight: 300;
@@ -92,50 +116,52 @@ body {
     text-align: center;
     border-radius: .75rem;
 
-    &:hover {
-      background-color: $blue;
-      transition-duration: 0.75s;
-      transition: cubic-bezier(.66,.71,.45,.22);
-      cursor: pointer;
-      color: #fff;
-      svg {
-        display: inline-flex;
+    @media (min-width: $screen-small) {
+      &:hover {
+        background-color: $blue;
+        transition-duration: 0.75s;
+        transition: cubic-bezier(.66,.71,.45,.22);
+        cursor: pointer;
+        color: #fff;
+        svg {
+          display: inline-flex;
 
-        &.hide {
+          &.hide {
+            display: none;
+          }
+
+          &#contact {
+            animation: 2s jump ease-out;
+          }
+
+          &#about {
+            transition: cubic-bezier(0,0,.59,.58);
+            animation: 4s 1 spin;
+
+            path {
+              stroke: orange;
+              stroke-dasharray: 50;
+              stroke-dashoffset: 300;
+              animation: 2s draw;
+            }
+          }
+
+          &#skills {
+            animation: 4s 1 rotate;
+            path {
+              stroke: black;
+              stroke-dasharray: 0;
+            }
+          }
+        }
+
+        .nav-text {
           display: none;
-        }
-
-        &#contact {
-          animation: 2s jump ease-out;
-        }
-
-        &#about {
-          transition: cubic-bezier(0,0,.59,.58);
-          animation: 4s 1 spin;
-
-          path {
-            stroke: orange;
-            stroke-dasharray: 50;
-            stroke-dashoffset: 300;
-            animation: 2s draw;
+          &--show {
+            animation: write-in 1s linear;
+            display: flex;
+            justify-content: center;
           }
-        }
-
-        &#skills {
-          animation: 4s 1 rotate;
-          path {
-            stroke: black;
-            stroke-dasharray: 0;
-          }
-        }
-      }
-
-      .nav-text {
-        display: none;
-        &--show {
-          animation: write-in 1s linear;
-          display: flex;
-          justify-content: center;
         }
       }
     }
@@ -146,6 +172,10 @@ body {
       margin: 0 .25rem;
       align-self: center;
       justify-content: center;
+
+      @media (max-width: $screen-tiny) {
+        width: 200px;
+      }
     }
   }
 }
@@ -170,7 +200,7 @@ body {
 
 @keyframes typing {
   from { width: 0 }
-  to { width: 13.14rem }
+  to { width: $header-width }
 }
 
 @keyframes blink-caret {
